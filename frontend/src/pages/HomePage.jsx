@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
+import './InfoNote.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -26,6 +27,12 @@ const HomePage = () => {
             alt="Physiotherapy Session"
           />
         </div>
+      </section>
+
+      <section className="info-note">
+        <p><strong>Home Visits Available:</strong> Female and Male Therapists.</p>
+        <p className="special-service"><strong>Special Service:</strong> Female therapist available for female patients in the comfort of their home.</p>
+        <p><strong>Timings:</strong> 10 am to 9 pm.</p>
       </section>
 
       <section className="about-us">
