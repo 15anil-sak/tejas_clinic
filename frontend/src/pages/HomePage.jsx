@@ -29,7 +29,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="info-note">
+      <section className="info-note home-visit-alert">
         <p><strong>Home Visits Available:</strong> Female and Male Therapists.</p>
         <p className="special-service"><strong>Special Service:</strong> Female therapist available for female patients in the comfort of their home.</p>
         <p><strong>Timings:</strong> 10 am to 9 pm.</p>
