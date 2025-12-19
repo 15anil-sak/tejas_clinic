@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
+import './InfoNote.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -41,8 +42,6 @@ const HomePage = () => {
           </p>
         </div>
       </div>
-
-      <section className="about-us">
         <h2>Our Services</h2>
         <div className="services-grid">
           <div className="service-card">

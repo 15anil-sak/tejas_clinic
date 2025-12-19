@@ -30,10 +30,13 @@ const getAppointmentById = async (req, res) => {
 
 // @desc    Create a new appointment
 // @route   POST /api/appointments
-// @access  Private
+// @access  Public (handles patient creation)
 const createAppointment = async (req, res) => {
+    // Log incoming data for debugging
+    console.log('1. RECEIVED BOOKING DATA:', req.body); 
+
     const { 
-        service_id, 
+        service, // Note: This is the service NAME from the form
         appointment_date, 
         description,
         patient_name,
@@ -41,29 +44,60 @@ const createAppointment = async (req, res) => {
         patient_email
     } = req.body;
 
-    const patient_id = req.user ? req.user.id : null; 
-
-    if (!service_id || !appointment_date || !patient_name || !mobile_number || !patient_email) {
+    // Validate essential fields from the form
+    if (!service || !appointment_date || !patient_name || !mobile_number || !patient_email) {
         return res.status(400).json({ message: 'Please include all required fields.' });
     }
 
     try {
+        const db = require('../config/db');
+        let service_id;
+        let patient_id;
+
+        // Step 1: Look Up Service ID
+        const [services] = await db.execute('SELECT id FROM services WHERE name = ?', [service]);
+        if (services.length === 0) {
+            return res.status(404).json({ message: `Service '${service}' not found.` });
+        }
+        service_id = services[0].id;
+
+        // Step 2: Handle Patient ID (Upsert Logic)
+        let user = await User.findByEmail(patient_email);
+
+        if (user) {
+            // If user exists, use their ID
+            patient_id = user.id;
+        } else {
+            // If user does not exist, create them
+            const newUserSql = 'INSERT INTO users (name, email, mobile_number, role) VALUES (?, ?, ?, ?)';
+            const [result] = await db.execute(newUserSql, [patient_name, patient_email, mobile_number, 'patient']);
+            patient_id = result.insertId;
+        }
+
+        // Step 3: Insert Appointment
         const appointment = new Appointment(
             patient_id, 
             service_id, 
             appointment_date, 
             description || null,
-            patient_name,
+            patient_name,      // These are now for the appointment record itself
             mobile_number,
             patient_email,
             undefined // Use default status
         );
         
         const newAppointment = await appointment.save();
+        
+        // Fetch the full appointment details to return to the client
         const createdAppointment = await Appointment.getById(newAppointment.id);
+
+        console.log('3. BOOKING SUCCESS:', createdAppointment);
         res.status(201).json(createdAppointment);
+
     } catch (error) {
-        console.error(error);
+        // Log the specific MySQL error message
+        console.error('2. DATABASE INSERTION ERROR:', error.message); 
+        console.error(error); // Full error stack
         res.status(500).json({ message: 'Server error booking appointment.' });
     }
 };

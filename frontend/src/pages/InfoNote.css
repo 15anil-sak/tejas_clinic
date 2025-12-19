@@ -1,0 +1,27 @@
+.info-note {
+  background-color: #f8d7da; /* A contrasting background color */
+  color: #721c24; /* A dark color for the text */
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.info-note p {
+  margin: 10px 0;
+}
+
+.info-note .special-service {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #721c24; 
+  background-color: #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.home-visit-alert {
+  background-color: hwb(237 21% 33% / 0.667);
+  color: white;
+}
