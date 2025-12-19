@@ -56,12 +56,12 @@
 
 /* Homepage Note Styles */
 .homepage-note-container {
-    background-color: #fce4ec; /* Light pink background */
+    background-color: #ffffff; /* White background */
     padding: 2rem;
     margin: 2rem auto;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-width: 800px;
+    box-shadow: none;
+    max-width: 900px;
     text-align: center;
 }
 
@@ -69,7 +69,7 @@
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 0.8rem;
-    color: #333;
+    color: var(--primary-color);
 }
 
 .homepage-note-bold {
