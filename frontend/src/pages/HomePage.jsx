@@ -28,6 +28,20 @@ const HomePage = () => {
         </div>
       </section>
 
+      <div className="homepage-note-container">
+        <div className="homepage-note-content">
+          <p>
+            <span className="homepage-note-bold">Home Visits Available:</span> Female and Male Therapists.
+          </p>
+          <p className="homepage-note-special">
+            <span className="homepage-note-bold">Special Service:</span> Female therapist available for female patients in the comfort of their home.
+          </p>
+          <p>
+            <span className="homepage-note-bold">Timings:</span> 10 am to 9 pm.
+          </p>
+        </div>
+      </div>
+
       <section className="about-us">
         <h2>Our Services</h2>
         <div className="services-grid">

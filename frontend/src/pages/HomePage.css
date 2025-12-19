@@ -53,3 +53,37 @@
     color: var(--secondary-color);
     margin-bottom: 1rem;
 }
+
+/* Homepage Note Styles */
+.homepage-note-container {
+    background-color: #fce4ec; /* Light pink background */
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 800px;
+    text-align: center;
+}
+
+.homepage-note-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    color: #333;
+}
+
+.homepage-note-bold {
+    font-weight: bold;
+    color: #c2185b; /* Darker pink for bold text */
+}
+
+.homepage-note-special {
+    background-color: #e91e63; /* Contrasting background for emphasis */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin: 1rem auto;
+    display: inline-block; /* To make padding and background work */
+    font-size: 1.3rem; /* Slightly larger for emphasis */
+}
+
